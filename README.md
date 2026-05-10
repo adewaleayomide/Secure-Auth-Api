@@ -882,8 +882,8 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 **Adewale Ayomide**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@adewaleayomide](https://github.com/adewaleayomide)
+- Email: adewaleayo91@gmail.com
 
 ## Support
 
