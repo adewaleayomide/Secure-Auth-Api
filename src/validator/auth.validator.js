@@ -14,8 +14,7 @@ export const registerValidation = [
     .isEmail().withMessage("Invalid Email Format").normalizeEmail(),
     body('password')
     .exists().withMessage("Password is required")
-    .isStrongPassword().withMessage("Password must contain a Capital Letter, Small letter, Number, Symbol")
-    .isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
+    .isStrongPassword().withMessage("Password must contain a Capital Letter, Small letter, Number, Symbol and at least 8 characters long")
 ];
 
 export const loginValidation = [
