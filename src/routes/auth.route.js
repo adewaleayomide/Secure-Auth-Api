@@ -7,6 +7,7 @@ import { validate } from '../middlewares/auth.middleware.js';
 import { verifyToken } from '../utils/jwt.js';
 import { platform } from '../controllers/platform.controller.js';
 
+
 const router = express.Router();
 
 // register a new user - DONE
@@ -18,14 +19,6 @@ router.post('/login', loginValidation, validate, login);
 // access platform - DONE
 router.get('/profile', verifyToken, platform);
 
-router.patch('/make-admin', async (req, res) => {
-  const user = await User.findOneAndUpdate(
-    { email: env.SUPER_ADMIN_EMAIL },
-    { role: 'admin' },
-    { new: true }
-  );
-  res.json(user);
-});
 
 // router.disable("X-powered-by");
 export default router;
