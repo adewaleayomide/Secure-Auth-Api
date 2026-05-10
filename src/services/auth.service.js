@@ -8,3 +8,7 @@ export const createUser = async (data) => {
 export const findInfo = async (query) => {
   return await User.findOne(query);
 };
+
+export const findAll = async () => {
+  return await User.find();
+};
