@@ -9,8 +9,16 @@ export const register = async (req, res) => {
   try{
     const { name, username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await createUser({ name, username, email, password: hashedPassword });
+    const isAdmin = email === env.SUPER_ADMIN_EMAIL; 
     
+    const newUser = await createUser({ 
+      name, 
+      username, 
+      email, 
+      password: hashedPassword,
+      role: isAdmin ? 'admin' : 'user'  // add this
+    });
+
     res.removeHeader("x-powered-by");
     res.status(201).json({
       success: true,
@@ -44,10 +52,11 @@ export const login = async (req, res) => {
           { expiresIn: env.JWT_EXPIRES_IN }
         );
 
-        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Strict' });
+        res.cookie('token', token, { httpOnly: true, secure: false, sameSite: 'lax' }); // Dev secure: false, Prod secure: true
         return res.status(200).json({ message: 'Login successful', user });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: 'Login Failed', error: err.message });
     }
 };
+
